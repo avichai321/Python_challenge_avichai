@@ -3,11 +3,8 @@ import logging
 from aiogram import Bot
 from aiogram import Dispatcher
 from aiogram import types
-import os
 from dotenv import load_dotenv
 from aiogram.filters import CommandStart
-
-
 
 load_dotenv()
 
@@ -18,15 +15,15 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def handle_start(message: types.Message):
-    await message.answer(f"Hello, {message.from_user.full_name}. Let's begin! see the Magic")
+    await message.answer(f"Hello, {message.from_user.full_name}. Let's start! see the Magic")
 
 
 @dp.message()
-async def answer_as_echo(message: types.message):
+async def answer_as_message(message: types.message):
     try:
         await message.send_copy(chat_id=message.chat.id)
     except Exception:
-        await message.answer("Unsupported media type...")
+        await message.answer("Not supported...")
 
 
 async def main():
